@@ -1,5 +1,7 @@
 package com.defiants.trackingmodule.model;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
+
 import javax.persistence.*;
 
 @Entity
@@ -10,9 +12,11 @@ public class Package {
     private int id;
 
     @ManyToOne(fetch = FetchType.LAZY)
+    @JsonIgnore
     private Customer customer;
 
     @ManyToOne(fetch = FetchType.LAZY)
+    @JsonIgnore
     private Carrier carrier;
 
     private String description;
