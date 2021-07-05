@@ -27,4 +27,22 @@ public class CustomerController {
 
         return null;
     }
+
+    @GetMapping("{customerId}/{packageId}/package")
+    public Package getAPackage(@PathVariable int customerId, @PathVariable int packageId){
+        Optional<Customer> customerOptional = customerRepository.findById(customerId);
+
+        if(customerOptional.isPresent()){
+            Set<Package> packages = customerOptional.get().getPackages();
+
+            for (Package pack :
+                    packages) {
+                if (pack.getId() == packageId) {
+                    return pack;
+                }
+            }
+        }
+
+        return null;
+    }
 }
